@@ -1,8 +1,0 @@
-|Environment variable|
-|---|
-|DB_HOSTNAME|
-|DB_USERNAME|
-|DB_PASSWD|
-|DB_SCHEMA|
-|SOS_USERNAME|
-|SOS_PASSWD|
