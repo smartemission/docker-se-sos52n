@@ -1,16 +1,11 @@
 #!/usr/bin/env bash
 
-# ToDo: Fix me
-if [ ! -d "/usr/local/tomcat/webapps/52n-sos-webapp" ]; then
-    $CATALINA_HOME/bin/catalina.sh start
-    sleep 20
-    $CATALINA_HOME/bin/catalina.sh stop
-    sleep 10
-fi
+# SOS Web .war is already unpacked!
+SOS_WEBAPP_DIR=${CATALINA_HOME}/webapps/sos52n
 
-envsubst < /opt/sos52n/datasource.properties > /usr/local/tomcat/webapps/52n-sos-webapp/WEB-INF/datasource.properties
-cp /opt/sos52n/configuration.db /usr/local/tomcat/webapps/52n-sos-webapp/
+envsubst < /opt/sos52n/datasource.properties > ${SOS_WEBAPP_DIR}/WEB-INF/datasource.properties
+cp /opt/sos52n/configuration.db ${SOS_WEBAPP_DIR}/
 
-sqlite3 /usr/local/tomcat/webapps/52n-sos-webapp/configuration.db "UPDATE administrator_user SET username = '${SOS_USERNAME}', password = '${SOS_PASSWD}'"
+sqlite3 ${SOS_WEBAPP_DIR}/configuration.db "UPDATE administrator_user SET username = '${SOS_USERNAME}', password = '${SOS_PASSWD}'"
 
-$CATALINA_HOME/bin/catalina.sh run
+${CATALINA_HOME}/bin/catalina.sh run
