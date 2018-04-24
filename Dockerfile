@@ -1,7 +1,7 @@
 FROM 52north/sos:4.3.7
 # see https://github.com/52North/docker-images
 
-MAINTAINER Gerwin Hulsteijn
+LABEL maintainer="Gerwin Hulsteijn, Just van den Broecke"
 
 ENV TZ Europe/Amsterdam
 ENV SOS_WEBAPP_DIR  $CATALINA_HOME/webapps/sos52n

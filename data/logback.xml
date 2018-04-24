@@ -1,8 +1,9 @@
+
 <configuration scan="true" scanPeriod="30 seconds">
-    <!-- /usr/local/tomcat/webapps/sos52n/WEB-INF/classes/logback.xml -->
+
 	<!-- refer to http://logback.qos.ch/manual/appenders.html -->
 
-	<property name="logFile" value="${catalina.base}/logs/sos52n" />
+	<property name="logFile" value="${catalina.base}/logs/52n-sos-webapp" />
 
 	<!--
 		the following assumptions are made by the Adminstrator:
@@ -44,5 +45,6 @@
 
 	<root level="INFO">
 		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" /> 
 	</root>
 </configuration>
