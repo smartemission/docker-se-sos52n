@@ -27,27 +27,27 @@ export PGUSER=${DB_USERNAME}
 export PGPASSWORD=${DB_PASSWD}
 
 # First check if DB Schema present: if not: no use to proceed.
-echo "Check if ${SOS_DB_SCHEMA} exists"
-schema_present=$(psql -qtAX -h "${DB_HOSTNAME}" -c "SELECT EXISTS(SELECT 1 FROM pg_namespace WHERE nspname = '${SOS_DB_SCHEMA}')" ${DB_NAME})
-# echo "schema_present = ${schema_present}"
-if [ "${schema_present}" != "t" ]
-then
-	echo "Schema ${SOS_DB_SCHEMA} does not exist, create this first, quitting..."
-	exit -1
-else
-	echo "OK: Schema ${SOS_DB_SCHEMA} exists"
-fi
-
-echo "Check if ${SOS_DB_SCHEMA}.${SOS_DB_TABLE} exists"
-table_present=$(psql -qtAX -h "${DB_HOSTNAME}" -c "select count(to_regclass('${SOS_DB_SCHEMA}.${SOS_DB_TABLE}'))" ${DB_NAME})
-# echo "table_present=${table_present}"
-if [ "${table_present}" = "0" ]
-then
-	echo "Creating Postgres DB tables..."
-	psql -q -h "${DB_HOSTNAME}" "${DB_NAME}" -f /opt/sos52n/db-schema.sql
-else
-	echo "OK: Postgres DB already populated"
-fi
+#echo "Check if ${SOS_DB_SCHEMA} exists"
+#schema_present=$(psql -qtAX -h "${DB_HOSTNAME}" -c "SELECT EXISTS(SELECT 1 FROM pg_namespace WHERE nspname = '${SOS_DB_SCHEMA}')" ${DB_NAME})
+## echo "schema_present = ${schema_present}"
+#if [ "${schema_present}" != "t" ]
+#then
+#	echo "Schema ${SOS_DB_SCHEMA} does not exist, create this first, quitting..."
+#	exit -1
+#else
+#	echo "OK: Schema ${SOS_DB_SCHEMA} exists"
+#fi
+#
+#echo "Check if ${SOS_DB_SCHEMA}.${SOS_DB_TABLE} exists"
+#table_present=$(psql -qtAX -h "${DB_HOSTNAME}" -c "select count(to_regclass('${SOS_DB_SCHEMA}.${SOS_DB_TABLE}'))" ${DB_NAME})
+## echo "table_present=${table_present}"
+#if [ "${table_present}" = "0" ]
+#then
+#	echo "Creating Postgres DB tables..."
+#	psql -q -h "${DB_HOSTNAME}" "${DB_NAME}" -f /opt/sos52n/db-schema.sql
+#else
+#	echo "OK: Postgres DB already populated"
+#fi
 
 # Remove any old cache on each start
 /bin/rm -f ${SOS_WEBAPP_DIR}/cache.tmp > /dev/null
