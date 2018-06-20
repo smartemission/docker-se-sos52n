@@ -27,7 +27,8 @@ RUN \
     && mkdir -p /opt/sos52n
 
 COPY data/datasource.properties /opt/sos52n/datasource.properties
-COPY data/configuration.db /opt/sos52n//configuration.db
+COPY data/configuration.db /opt/sos52n/configuration.db
+COPY data/db-schema.sql /opt/sos52n/db-schema.sql
 COPY data/logback.xml $SOS_WEBAPP_DIR/WEB-INF/classes/logback.xml
 COPY data/timeseries-api_v1_beans.xml $SOS_WEBAPP_DIR/WEB-INF/spring/timeseries-api_v1_beans.xml 
 COPY data/jsclient.json $SOS_WEBAPP_DIR/static/client/jsClient/settings.json

@@ -21,6 +21,7 @@ Kubernetes.
 |Environment variable|
 |---|
 |DB_HOSTNAME|
+|DB_NAME|
 |DB_USERNAME|
 |DB_PASSWD|
 |SOS_DB_SCHEMA|
