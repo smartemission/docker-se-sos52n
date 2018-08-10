@@ -7,6 +7,17 @@ ENV TZ Europe/Amsterdam
 ENV SOS_WEBAPP_DIR  $CATALINA_HOME/webapps/sos52n
 ENV SOS_WEBAPP_WAR $CATALINA_HOME/webapps/sos52n.war
 
+# OVERRULE, see https://github.com/kartoza/docker-geoserver/blob/master/Dockerfile
+# Original:
+#ENV GEOSERVER_OPTS "-Djava.awt.headless=true -server -Xms2G -Xmx4G -Xrs -XX:PerfDataSamplingInterval=500 \
+# -Dorg.geotools.referencing.forceXY=true -XX:SoftRefLRUPolicyMSPerMB=36000 -XX:+UseParallelGC -XX:NewRatio=2 \
+# -XX:+CMSClassUnloadingEnabled"
+
+ENV JAVA_OPTS "-Djava.awt.headless=true -server -Xrs -XX:PerfDataSamplingInterval=500 \
+ -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap \
+ -Dorg.geotools.referencing.forceXY=true -XX:SoftRefLRUPolicyMSPerMB=36000 -XX:NewRatio=2 \
+ -XX:+CMSClassUnloadingEnabled"
+
 # Remove unneccesary standard Tomcat Webapps and install required libs
 # for initializing config and sqlite config DB. Rename webapp
 # and unzip .war for convenience.

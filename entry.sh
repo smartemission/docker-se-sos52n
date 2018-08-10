@@ -55,4 +55,4 @@ export PGPASSWORD=${DB_PASSWD}
 echo "Entry.sh: END - updating settings"
 
 # runnit
-${CATALINA_HOME}/bin/catalina.sh run
+. ${CATALINA_HOME}/bin/catalina.sh run
